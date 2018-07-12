@@ -1,0 +1,36 @@
+buildscript {
+    ext { springBootVersion = '2.0.2.RELEASE' }
+    repositories { mavenCentral() }
+    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+
+ext { springBootVersion = '2.0.2.RELEASE' }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+    baseName = 'gs-testing-web'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    // tag::test[]
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    // end::test[]
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
